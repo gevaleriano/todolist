@@ -1,7 +1,6 @@
 # todolist
 Week 1 - ToDoList
-Primera actualizacion de repo local para la aplicacion de ToDoList
 
+Input to insert todo + button "Add"
 
-
-more
+List for TodoList below 
