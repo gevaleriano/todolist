@@ -1,0 +1,92 @@
+body { 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    background-color: #f5f5f5; 
+    padding: 40px; 
+    max-width: 600px; 
+    margin: auto; 
+}
+h1 { 
+    text-align: center; 
+    color: #2C5EAD; 
+}
+#iTodo { 
+    width: 70%; 
+    padding: 10px; 
+    font-size: 16px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+}
+
+#submit { 
+    padding: 10px 15px; 
+    font-size: 16px; 
+    border: none; 
+    background-color: #2C5EAD; 
+    color: white; 
+    border-radius: 3px; 
+    cursor: pointer; 
+}
+
+#submit:hover { 
+    background-color: #2C5EAD; 
+}
+
+ul { 
+    list-style-type: none; 
+    padding: 0; 
+    margin-top: 20px; 
+}
+
+li { 
+    background-color: #fff; 
+    padding: 12px 10px; 
+    margin-bottom: 10px; 
+    border-radius: 6px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); 
+}
+
+li span { 
+    flex-grow: 1; 
+    margin-right: 10px; 
+    font-size: 16px; 
+    color: #333; 
+}
+
+li input[type="text"] { 
+    flex-grow: 1; 
+    padding: 6px; 
+    font-size: 15px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+}
+
+button { 
+    margin-left: 5px; 
+    padding: 6px 10px; 
+    border: none; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-size: 14px; 
+}
+
+.btn-edit { 
+    background-color: #007bff; 
+    color: white; 
+}
+
+.btn-save { 
+    background-color: #2C5EAD; 
+    color: white; 
+}
+
+li button:hover { 
+    opacity: 0.9; 
+}
+
+.btn-delete{ 
+    background-color: #dc3545; 
+    color: white; 
+}
