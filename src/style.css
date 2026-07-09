@@ -9,7 +9,7 @@ h1 {
     text-align: center; 
     color: #2C5EAD; 
 }
-#iTodo { 
+#inputTaskName { 
     width: 70%; 
     padding: 10px; 
     font-size: 16px; 
@@ -28,13 +28,19 @@ h1 {
 }
 
 #submit:hover { 
-    background-color: #2C5EAD; 
+    opacity: 0.9;
+    scale: 1.1;
+}
+
+.details{
+    display: none;
 }
 
 ul { 
     list-style-type: none; 
     padding: 0; 
     margin-top: 20px; 
+    overflow: visible;
 }
 
 li { 
@@ -46,6 +52,32 @@ li {
     align-items: center; 
     justify-content: space-between; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); 
+
+}
+
+.task {
+    transition: all 0.5s;
+}
+
+.task:hover {
+  transform: scale(1.07);
+}
+
+.task:hover > .details{
+    display: flex;
+}
+
+
+.task.has-transition {
+  transition: transform 10ms ease-in-out;
+}
+
+li.draggingg {
+    opacity: 0.6;
+}
+
+li.dragging :where(.details, i){
+    opacity: 0;
 }
 
 li span { 
@@ -73,7 +105,7 @@ button {
 }
 
 .btn-edit { 
-    background-color: #007bff; 
+    background-color: #4BB8FA; 
     color: white; 
 }
 
@@ -82,11 +114,46 @@ button {
     color: white; 
 }
 
+.btn-complete { 
+    background-color: #28a745;; 
+    color: white; 
+}
+
 li button:hover { 
     opacity: 0.9; 
 }
 
 .btn-delete{ 
-    background-color: #dc3545; 
+    background-color: #FF6060; 
     color: white; 
+}
+
+.completed{
+    background-color: #A3DC9A;
+}
+
+.canceled{
+    background-color: #FF6060;
+    opacity: 0.4;
+}
+
+.btn-cancel{
+    background-color: #D51C39;
+    color: white;
+}
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#counter{
+    background-color: #4BB8FA;
+    border-radius: 20px;
+    color: white;
+    padding-inline: 0;
+    height: 30px;
+    min-width: 50px;
+    margin: 10px;
+    font-size: 1rem;
+    text-align: center;
 }

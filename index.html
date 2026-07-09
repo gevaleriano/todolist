@@ -1,22 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToDoList - APP</title>
-    <link rel="stylesheet" href="main.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>todolist</title>
+    <link rel="stylesheet" href="./src/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+  </head>
+  <body>
+    <header>
+      <h1>To-Do List </h1><div id="counter"></div>
+    </header>
     <div id="container">
-        <h1>To-Do List</h1>
-        <div>
-            <input type="text" id="iTodo" name="iTodo" placeholder="Write a task">
-            <button id="submit">Add</button>
-        </div>
+      <div>
+          <input type="text" id="inputTaskName" name="inputTaskName" placeholder="Write a task">
+          <button id="submit">Add</button>
+      </div>
         <div id="Todolist">
-            <ul id="taskList"></ul>
+            <ul id="taskList" class="sortable-list"></ul>
         </div>
     </div>
-    <script src="main.js"></script>
-</body>
+    <script src="./src/main.js" type="module"></script>
+  </body>
 </html>
