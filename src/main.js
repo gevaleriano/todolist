@@ -6,15 +6,13 @@ import { setupCounter } from './counter.js'
 import {renderTasks, updateTasksOrderFromDOM, saveTask} from "./functions.js";
 
 let itemTasks = {};
-const TaskLocalStorage = JSON.parse(localStorage.getItem('tasks')) || [];
+const TasksLocalStorage = JSON.parse(localStorage.getItem('tasks')) || [];
 const inputTodo = document.getElementById('inputTaskName');
 const submit = document.getElementById('submit');
 const sortableList = document.getElementById('taskList');
 
 window.addEventListener('DOMContentLoaded', () => {
-    const Tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    tasks.push(...Tasks);
-    renderTasks(sortableList);
+    renderTasks();
 
     
     itemTasks = sortableList.querySelectorAll(".task")
@@ -29,14 +27,13 @@ window.addEventListener('DOMContentLoaded', () => {
         });
 
     });
-
+    
 
 
     const initSortableList = (e) => {
         e.preventDefault();
-        
         const draggingItem = document.querySelector(".dragging");
-        
+
         if (!draggingItem) return;
         
         const siblings = [...sortableList.querySelectorAll(".task:not(.dragging)")];
@@ -52,13 +49,13 @@ window.addEventListener('DOMContentLoaded', () => {
     
     sortableList.addEventListener("dragover", initSortableList);
     sortableList.addEventListener("dragenter", e => e.preventDefault());
-
+    
 });
 
 
 submit.addEventListener('click', () => {
     const taskName = inputTodo.value.trim();
-    saveTask(tasks, sortableList, taskName);
+    saveTask(taskName);
     inputTodo.value = ""
 });
 
@@ -66,7 +63,7 @@ inputTodo.addEventListener('keydown', (e) => {
     if(e.key === "Enter"){
         e.preventDefault();
         const taskName = inputTodo.value.trim();
-        saveTask(tasks, sortableList, taskName)
+        saveTask(taskName)
         inputTodo.value = ""
     }
 });
