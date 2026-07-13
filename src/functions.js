@@ -8,8 +8,7 @@ const filters = document.querySelectorAll('input[name="filter"]');
 
 filters.forEach(filter => {
     filter.addEventListener("change", (e) => {
-        currentFilter = e.target.value;
-        renderTasks(); // o renderTasks() si quieres mostrar el loader
+        changeFilter(e.target.value);
     });
 });
 
@@ -293,3 +292,8 @@ function getFilteredTasks() {
     return filteredTasks.filter(task => task.status === currentFilter);
 }
 
+export const changeFilter = filter => {
+    currentFilter = filter;
+    document.getElementById(filter).checked = true;
+    renderTasks();
+};

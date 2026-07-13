@@ -3,7 +3,7 @@ import javascriptLogo from './assets/javascript.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import { setupCounter } from './counter.js'
-import {renderTasks, updateTasksOrderFromDOM, saveTask} from "./functions.js";
+import {renderTasks, updateTasksOrderFromDOM, saveTask, changeFilter} from "./functions.js";
 
 let itemTasks = {};
 const TasksLocalStorage = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -11,12 +11,8 @@ const inputTodo = document.getElementById('inputTaskName');
 const submit = document.getElementById('submit');
 const sortableList = document.getElementById('taskList');
 
-
-
-
 window.addEventListener('DOMContentLoaded', () => {
     renderTasks();
-
     
     itemTasks = sortableList.querySelectorAll(".task")
     itemTasks.forEach(taskItem => {
@@ -31,8 +27,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
     });
     
-
-
     const initSortableList = (e) => {
         e.preventDefault();
         const draggingItem = document.querySelector(".dragging");
@@ -69,6 +63,37 @@ inputTodo.addEventListener('keydown', (e) => {
         saveTask(taskName)
         inputTodo.value = ""
     }
+});
+
+
+//Short
+window.addEventListener("keydown", e => {
+
+    const key = e.key.toLowerCase();
+
+    //Focus for new Task (InputNewTask)
+    if (e.ctrlKey && key === "k") {
+        e.preventDefault();
+        inputTodo.focus();
+    }
+
+    
+    //Ctr for filters
+    if (e.ctrlKey && key === "1") {
+        e.preventDefault();
+        changeFilter("all");
+    }
+
+    if (e.ctrlKey && key === "2") {
+        e.preventDefault();
+        changeFilter("pending");
+    }
+
+    if (e.ctrlKey && key === "3") {
+        e.preventDefault();
+        changeFilter("completed");
+    }
+
 });
 
 
