@@ -17,6 +17,14 @@
           <input type="text" id="inputTaskName" name="inputTaskName" placeholder="Write a task">
           <button id="submit">Add</button>
       </div>
+      <div class="task-filters">
+       <input type="radio" name="filter" value="all" checked>All
+
+       <input type="radio" name="filter" value="pending">Active
+
+       <input type="radio" name="filter"  value="completed">Completed
+
+      </div>
         <div id="Todolist" >
             <ul id="taskList" class="sortable-list"></ul>
         </div>

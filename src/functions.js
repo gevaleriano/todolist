@@ -1,6 +1,19 @@
 const counter = document.getElementById('counter');
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
+let currentFilter = "all";
+
+//Filters
+const filters = document.querySelectorAll('input[name="filter"]');
+
+filters.forEach(filter => {
+    filter.addEventListener("change", (e) => {
+        currentFilter = e.target.value;
+        renderTasks(); // o renderTasks() si quieres mostrar el loader
+    });
+});
+
+
 export function saveTask(taskName){
     if (!taskName) 
         return alert('Please write something');
@@ -21,9 +34,25 @@ export function renderTasks() {
         containerLoader.classList.remove('loader')
         containerLoader.classList.add("hide")
 
-        tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        //tasks = JSON.parse(localStorage.getItem('tasks')) || [];
         sortableList.innerHTML = '';
-    
+        
+        tasks = getFilteredTasks();
+
+        if (tasks.length < 1){
+            sortableList.innerHTML = `
+            <li class="empty-state">
+                ${currentFilter !== "all"
+                    ? "No matching tasks found."
+                    : "Your task list is empty."}
+            </li>`;
+
+            counter.textContent = 0;
+            return;
+        }
+
+        console.log(tasks)
+
         tasks.forEach(task => {
             const li = document.createElement('li');
             li.classList.add('task');
@@ -95,7 +124,7 @@ export function renderTasks() {
         counter.innerHTML = tasks.filter(task => task.status === "pending").length
 
         
-    }, 3000);
+    }, 2000);
 }
 
 
@@ -111,16 +140,17 @@ function deleteTask(id) {
     }
 }
 function updateStatus(id, newStatus){
-    const tasks = JSON.parse(localStorage.getItem("tasks")) || []
+    if (confirm(newStatus + " this item?")) {
+        tasks = JSON.parse(localStorage.getItem("tasks")) || []
+        const task = tasks.find(task => task.id === id)
 
-    const task = tasks.find(task => task.id === id)
-    if(task){
-        task.status = newStatus
-        
-        updateStorage(tasks);
-        renderTasks();
+        if(task){
+            task.status = newStatus
+            
+            updateStorage(tasks);
+            renderTasks();
+        }
     }
-
 }
 /*
 function completeTask(task) {
@@ -194,5 +224,15 @@ export function updateTasksOrderFromDOM(list, tasks){
         return mapaOrden[a.id] - mapaOrden[b.id];
     });
     updateStorage(tasks);
+}
+
+//filter tasks
+function getFilteredTasks() {
+    let filteredTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    if (currentFilter === "all") {
+        return filteredTasks;
+    }
+
+    return filteredTasks.filter(task => task.status === currentFilter);
 }
 

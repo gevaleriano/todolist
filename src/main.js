@@ -11,6 +11,9 @@ const inputTodo = document.getElementById('inputTaskName');
 const submit = document.getElementById('submit');
 const sortableList = document.getElementById('taskList');
 
+
+
+
 window.addEventListener('DOMContentLoaded', () => {
     renderTasks();
 
