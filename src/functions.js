@@ -51,8 +51,6 @@ export function renderTasks() {
             return;
         }
 
-        console.log(tasks)
-
         tasks.forEach(task => {
             const li = document.createElement('li');
             li.classList.add('task');
@@ -121,7 +119,7 @@ export function renderTasks() {
             sortableList.appendChild(li);
         });
         
-        counter.innerHTML = tasks.filter(task => task.status === "pending").length
+        counter.innerHTML = `<i class="ri-todo-line"></i> ${tasks.filter(task => task.status === "pending").length}` 
 
         
     }, 2000);

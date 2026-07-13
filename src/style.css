@@ -141,21 +141,33 @@ li button:hover {
     background-color: #D51C39;
     color: white;
 }
+
 header {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 16px;
+    margin-bottom: 30px;
 }
 #counter{
-    background-color: #4BB8FA;
-    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 38px;
+    height: 38px;
+    padding: 0 14px;
+    gap: 4px;
+    background: linear-gradient(135deg, #58c2ff, #2d5cae);
     color: white;
-    padding-inline: 0;
-    height: 30px;
-    min-width: 50px;
-    margin: 10px;
     font-size: 1rem;
-    text-align: center;
+    font-weight: 700;
+    border-radius: 999px;
+    box-shadow: 0 8px 20px rgba(45, 92, 174, .25);
+    transition: .3s;
+}
+
+#counter:hover{
+    transform: translateY(-2px);
 }
 
 /* Loading */
