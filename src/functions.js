@@ -116,14 +116,73 @@ export function renderTasks() {
                 cancelBtn.classList.add("hide")
             }
     
-            sortableList.appendChild(li);
+            sortableList.appendChild(li); 
         });
+
+        const hasPending = tasks.some(t => t.status === "pending");
+        const hasCompleted = tasks.some(t => t.status === "completed");
+
+        const completedControls = document.createElement('li');
+        completedControls.style.justifyContent = "flex-end";
+        completedControls.innerHTML = `
+        ${hasPending ? 
+            `<button id="markAllCompleted" class="btn-complete">
+                <i class="ri-check-double-line"></i>
+                Mark all completed
+            </button>`
+            : ""
+        }
+        ${hasCompleted ? 
+            `<button id="clearCompleted" class="btn-delete">
+                <i class="ri-delete-bin-6-line"></i>
+                Clear completed
+            </button>`
+            : ""
+        }`;
         
+        sortableList.appendChild(completedControls)
+
+        document.getElementById("markAllCompleted")?.addEventListener("click", markAllCompleted);
+        document.getElementById("clearCompleted")?.addEventListener("click", clearCompleted);
+
+
         counter.innerHTML = `<i class="ri-todo-line"></i> ${tasks.filter(task => task.status === "pending").length}` 
 
         
     }, 2000);
 }
+
+//mark all complete and clear completed
+const markAllCompleted = () => {
+    if (!tasks.length) return;
+
+    if (confirm("Complete all pending tasks?")){
+        tasks.forEach(task => {
+            if (task.status === "pending") {
+                task.status = "completed";
+            }
+        });
+
+        updateStorage(tasks);
+        renderTasks();
+    }
+};
+
+const clearCompleted = () => {
+    const completedTasks = tasks.filter(task => task.status === "completed");
+
+    if (!completedTasks.length) {
+        alert("There are no completed tasks.");
+        return;
+    }
+
+    if (confirm("Delete all completed tasks?")){
+        tasks = tasks.filter(task => task.status !== "completed");
+
+        updateStorage(tasks);
+        renderTasks();
+    }
+};
 
 
 function deleteTask(id) {
