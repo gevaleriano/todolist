@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>todolist</title>
+    <link rel="stylesheet" href="./src/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+  </head>
+  <body>
+    <header>
+      <h1>To-Do List </h1><div id="counter"></div>
+    </header>
+    <div id="container">
+      <div>
+          <input type="text" id="inputTaskName" name="inputTaskName" placeholder="Write a task">
+          <button id="submit">Add</button>
+      </div>
+      <div class="task-filters">
+       <input type="radio" name="filter" id="all" value="all" checked>All
+
+       <input type="radio" name="filter" id="pending" value="pending">Active
+
+       <input type="radio" name="filter" id="completed" value="completed">Completed
+
+      </div>
+        <div id="Todolist" >
+            <ul id="taskList" class="sortable-list"></ul>
+        </div>
+        
+    </div>
+    <div id="container-loader" class="hide">
+      <div class="spiner"></div>
+      <div class="loading">loading...</div>
+          
+    </div>
+    <script src="./src/main.js" type="module"></script>
+  </body>
+</html>
